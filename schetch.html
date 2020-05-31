@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div style="position: absolute;z-index: 99;right: 10px;">
+    <button onclick="draw()">绘制填充矩形</button>
+</div>
+<canvas id="canvas" width="600" height="600" style="border: 1px solid blueviolet"></canvas>
+<body>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    function draw() {
+        clear();
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect (10, 10, 55, 50);
+
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect (30, 30, 55, 50);
+    }
+
+    function clear() {
+        ctx.clearRect(0, 0, 150, 150)
+    }
+</script>
+
+</body>
+</html>
