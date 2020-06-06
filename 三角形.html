@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div style="position: absolute;z-index: 99;right: 10px;">
+    <button onclick="draw()">绘制填充三角形</button>
+    <button onclick="draw2()">绘制描边三角形</button>
+</div>
+<canvas id="canvas" width="600" height="600" style="border: 1px solid blueviolet"></canvas>
+<body>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    //填充三角形
+    function draw() {
+        clear();
+        ctx.beginPath();
+        ctx.moveTo(75, 50);
+        ctx.lineTo(150, 50);
+        ctx.lineTo(150, 150);
+        ctx.fill();
+    }
+
+    //描边三角形
+    function draw2() {
+        clear();
+        // 描边三角形
+        ctx.beginPath();
+        ctx.moveTo(125, 125);
+        ctx.lineTo(125, 45);
+        ctx.lineTo(45, 125);
+        ctx.closePath();
+        ctx.stroke();
+    }
+
+
+    function clear() {
+        ctx.clearRect(0, 0,  canvas.width, canvas.height)
+    }
+</script>
+
+</body>
+</html>

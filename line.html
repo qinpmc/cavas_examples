@@ -6,7 +6,7 @@
 </head>
 <div style="position: absolute;z-index: 99;right: 10px;">
     <button onclick="draw()">绘制直线</button>
-    <button onclick="clr()">清除</button>
+    <button onclick="clearLine()">清除</button>
 </div>
 <canvas id="canvas" width="600" height="600" style="border: 1px solid blueviolet"></canvas>
 <body>
@@ -15,9 +15,9 @@
     var ctx = canvas.getContext("2d");
 
     function draw() {
-        clr();
+        clearLine();
         // 用绝对坐标来创建一条路径
-        //ctx.beginPath();
+        ctx.beginPath();
         ctx.moveTo(10, 0);
         ctx.lineTo(140, 70);
 
@@ -26,7 +26,7 @@
         ctx.stroke();
     }
 
-    function clr() {
+    function clearLine() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
 </script>
