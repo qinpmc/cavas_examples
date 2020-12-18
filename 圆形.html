@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div style="position: absolute;z-index: 99;right: 10px;">
+    <button onclick="draw()">绘制填充圆形</button>
+</div>
+ <canvas id="canvas" width="32" height="32" style="border: 1px solid;"></canvas>
+<script type="application/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+
+    function draw() {
+        clear();
+        context.fillStyle="#00FFFF";
+		context.beginPath();
+		context.arc(16,16,16,Math.PI*2,0,true);
+		context.closePath();
+		context.fill();
+    }
+
+  
+    function clear() {
+        context.clearRect(0, 0,  canvas.width, canvas.height)
+    }
+
+
+</script>
+</body>
+</html>
