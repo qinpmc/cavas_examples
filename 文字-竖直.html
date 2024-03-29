@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 99; right: 10px">
+      <button onclick="draw()">绘制文字1</button>
+      <button onclick="draw2()">绘制文字2</button>
+      <button onclick="draw3()">绘制文字3</button>
+    </div>
+    <canvas
+      id="canvas"
+      width="600"
+      height="1000"
+      style="border: 1px solid blueviolet"
+    ></canvas>
+    <script type="application/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      var coords = [
+        [30, 139.5],
+        [30, 296.1],
+        [30, 452.70000000000005],
+        [30, 609.3000000000001],
+        [30, 765.9000000000001],
+        [30, 922.5],
+      ];
+
+      function draw() {
+        clear();
+
+        ctx.font = "20px serif";
+        ctx.textBaseline = "bottom";
+        const text = "你好";
+
+        coords.forEach((xy) => {
+          ctx.fillText(text, xy[0], xy[1]);
+        });
+
+        ctx.fillStyle = "rgb(200,0,0)";
+        coords.forEach((xy) => {
+          ctx.fillRect(xy[0] - 6, xy[1], 6, 2);
+        });
+
+        // context.translate(offsetX+Math.ceil(metrics.width/2), offsetY-Math.ceil(metrics.width/2));
+        // context.rotate(-90 * Math.PI / 180);
+        // context.restore();
+      }
+
+      function draw2() {
+        clear();
+        ctx.font = "20px serif";
+        ctx.textBaseline = "center";
+        ctx.textAlign = "center";
+
+        const text = "113° 23′ 27″";
+        var arrText = text.split("");
+        var arrWidth = arrText.map(function (letter) {
+          return ctx.measureText(letter).width;
+        });
+
+        let x = [30, 139.5][0];
+        let y = [30, 139.5][1] + ctx.measureText(text).width / 2;
+
+        coords.forEach((c) => {
+          let x = c[0];
+          let y = c[1] + ctx.measureText(text).width / 2;
+          // ctx.save();
+          // 开始逐字绘制
+          arrText.forEach(function (letter, index) {
+            // 确定下一个字符的纵坐标位置
+            var letterWidth = arrWidth[index];
+
+            ctx.translate(x, y);
+            // 英文字符，旋转90°
+            // ctx.rotate((90 * Math.PI) / 180);
+            ctx.rotate(-Math.PI / 2);
+            ctx.translate(-x, -y);
+
+            ctx.fillText(letter, x, y);
+            // 旋转坐标系还原成初始态
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            // 确定下一个字符的纵坐标位置
+            var letterWidth = arrWidth[index];
+            y = y - letterWidth;
+            // ctx.restore();
+          });
+
+          ctx.fillStyle = "rgb(200,0,0)";
+          coords.forEach((xy) => {
+            ctx.fillRect(xy[0] - 6, xy[1], 6, 2);
+          });
+        });
+      }
+
+      function draw3() {
+        clear();
+      }
+
+      function clear() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    </script>
+  </body>
+</html>

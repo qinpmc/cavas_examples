@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 99; right: 10px">
+      <button onclick="draw()">绘制矩形1</button>
+      <button onclick="draw2()">绘制矩形2</button>
+      <button onclick="draw3()">绘制矩形3</button>
+      <button onclick="draw4()">绘制矩形4</button>
+    </div>
+    <canvas
+      id="canvas"
+      width="600"
+      height="600"
+      style="border: 1px solid blueviolet"
+    ></canvas>
+    <script type="application/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      // https://blog.csdn.net/YMX2020/article/details/118516852
+      // https://juejin.cn/post/6844903879599996942
+      function draw() {
+        clear();
+
+        // 第一个矩形pink
+        ctx.fillStyle = "pink";
+        ctx.fillRect(10, 10, 70, 30);
+
+        // 第二个矩形orange
+        ctx.fillStyle = "orange";
+        ctx.fillRect(130, 10, 70, 30);
+
+        // 第三个矩形yellow
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(250, 10, 70, 30);
+
+        // 这矩形会自动继承上一次的canvas的状态，颜色是yellow
+        ctx.fillRect(370, 10, 100, 100);
+      }
+
+      function draw2() {
+        clear();
+        // 第一个矩形pink
+        ctx.fillStyle = "pink";
+        ctx.fillRect(10, 10, 70, 30);
+        // 保存第一个canvas的状态
+        ctx.save();
+
+        // 第二个矩形orange
+        ctx.fillStyle = "orange";
+        ctx.fillRect(130, 10, 70, 30);
+        // 保存第二个canvas的状态
+        ctx.save();
+
+        // 第三个矩形yellow
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(250, 10, 70, 30);
+        // 保存第三个canvas的状态
+        ctx.save();
+
+        // 回到第三次保存的canvas状态
+        ctx.restore();
+
+        // 这矩形会使用第三次的canvas的状态，颜色是yellow
+        ctx.fillRect(370, 10, 100, 100);
+      }
+
+      function draw3() {
+        clear();
+        // 第一个矩形pink
+        ctx.fillStyle = "pink";
+        ctx.fillRect(10, 10, 70, 30);
+        // 保存第一个canvas的状态
+        ctx.save();
+
+        // 第二个矩形orange
+        ctx.fillStyle = "orange";
+        ctx.fillRect(130, 10, 70, 30);
+        // 保存第二个canvas的状态
+        ctx.save();
+
+        // 第三个矩形yellow
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(250, 10, 70, 30);
+        // 保存第三个canvas的状态
+        ctx.save();
+
+        // 回到第三次保存的canvas状态
+        ctx.restore();
+        // 回到第二次保存的canvas状态
+        ctx.restore();
+
+        // 这矩形会使用第二次的canvas的状态，颜色是orange
+        ctx.fillRect(370, 10, 100, 100);
+      }
+
+      function draw4() {
+        clear();
+        // 第一个矩形pink
+        ctx.fillStyle = "pink";
+        ctx.fillRect(10, 10, 70, 30);
+        // 保存第一个canvas的状态
+        ctx.save();
+
+        // 第二个矩形orange
+        ctx.fillStyle = "orange";
+        ctx.fillRect(130, 10, 70, 30);
+        // 保存第二个canvas的状态
+        ctx.save();
+
+        // 第三个矩形yellow
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(250, 10, 70, 30);
+        // 保存第三个canvas的状态
+        ctx.save();
+
+        // 回到第三次保存的canvas状态
+        ctx.restore();
+        // 回到第二次保存的canvas状态
+        ctx.restore();
+        // 回到第一次保存的canvas状态
+        ctx.restore();
+
+        // 这矩形会使用第一次的canvas的状态，颜色是pink
+        ctx.fillRect(370, 10, 100, 100);
+      }
+      function clear() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    </script>
+  </body>
+</html>

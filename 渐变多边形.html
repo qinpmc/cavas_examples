@@ -1,0 +1,96 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <div style="position: absolute; z-index: 99; right: 10px">
+    <button onclick="draw1()">绘制多边形</button>
+    <button onclick="draw2()">绘制渐矩形</button>
+    <button onclick="draw3()">绘制渐变多边形</button>
+
+  </div>
+  <canvas id="canvas" width="600" height="600" style="border: 1px solid blueviolet"></canvas>
+  <script type="application/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    function draw1() {
+      clear();
+      // 获得 canvas.context
+      var canvas = document.getElementById("quad");
+      var poly = [0, 116, 329, 124, 539, 199, 52, 190];
+      polygon(poly, ctx);
+
+    }
+
+    //https://www.jianshu.com/p/73d787270c48
+    function polygon(poly, context) {
+      context.fillStyle = "white"; // 内部使用白色，如不指定，默认为黑色
+      context.strokeStyle = "#008"; // 深蓝色外边框
+      context.lineWidth = 2; // 2个像素宽
+      context.beginPath();
+      context.moveTo(poly[0], poly[1]);
+
+      for (var i = 2; i < 8; i += 2) {
+        context.lineTo(poly[i], poly[i + 1]);
+        console.log(poly[i], poly[i + 1]);
+      }
+      context.closePath();
+      context.fill();
+      context.stroke();
+    }
+
+    function draw2() {
+      clear();
+      const gradient = ctx.createLinearGradient(20, 0, 220, 0);
+
+      // Add three color stops
+      gradient.addColorStop(0, "#dfe7f5");
+      gradient.addColorStop(0.2, "#b8cae9");
+      gradient.addColorStop(0.4, "#85a3d8");
+      gradient.addColorStop(0.6, "#4472c4");
+      gradient.addColorStop(0.8, "#335ba2");
+      gradient.addColorStop(1, "#1f3761");
+      // Set the fill style and draw a rectangle
+      ctx.fillStyle = gradient;
+      ctx.fillRect(20, 20, 200, 100);
+    }
+
+    function draw3() {
+      clear();
+      // var gradient = ctx.createLinearGradient(20, 0, 220, 0);
+      var gradient = ctx.createLinearGradient(0, 0, 520, 200);
+      // Add three color stops
+      gradient.addColorStop(0, "#dfe7f5");
+      gradient.addColorStop(0.2, "#b8cae9");
+      gradient.addColorStop(0.4, "#85a3d8");
+      gradient.addColorStop(0.6, "#4472c4");
+      gradient.addColorStop(0.8, "#335ba2");
+      gradient.addColorStop(1, "#1f3761");
+      // Set the fill style and draw a rectangle
+      ctx.fillStyle = gradient;
+      ctx.fillStyle = 'rgab(255,0,0,0.5)';
+
+      var poly = [0, 116, 329, 124, 539, 199, 52, 190];
+      ctx.beginPath();
+      ctx.moveTo(poly[0], poly[1]);
+
+      for (var i = 2; i < 8; i += 2) {
+        ctx.lineTo(poly[i], poly[i + 1]);
+        console.log(poly[i], poly[i + 1]);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
+
+
+    function clear() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
+</body>
+
+</html>

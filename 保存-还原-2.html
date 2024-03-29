@@ -1,0 +1,233 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 99; right: 10px">
+      <button onclick="draw()">绘制矩形1</button>
+      <button onclick="draw2()">绘制矩形2</button>
+      <button onclick="draw3()">绘制矩形3</button>
+      <!-- <button onclick="draw4()">绘制矩形4</button> -->
+    </div>
+    <canvas
+      id="canvas"
+      width="600"
+      height="600"
+      style="border: 1px solid blueviolet"
+    ></canvas>
+    <script type="application/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      //https://stackoverflow.com/questions/3167928/drawing-rotated-text-on-a-html5-canvas
+      function draw() {
+        clear();
+
+        var font, lineHeight, x, y;
+
+        x = 100;
+        y = 100;
+        font = 20;
+        lineHeight = 15; // this is guess and check as far as I know
+        ctx.font = font + "px Arial";
+
+        // Right Aligned
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "right";
+        ctx.fillText("right", 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+
+        // Center
+        ctx.fillStyle = "black";
+        x = 150;
+        y = 100;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "center";
+        ctx.fillText("center", 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+
+        // Left
+        ctx.fillStyle = "black";
+        x = 200;
+        y = 100;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "left";
+        ctx.fillText("left", 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+      }
+
+      function draw2() {
+        clear();
+        var font,
+          lineHeight,
+          x,
+          y,
+          text = "113° 23′ 27″";
+
+        x = 100;
+        y = 100;
+        font = 20;
+        lineHeight = 15; // this is guess and check as far as I know
+        ctx.font = font + "px Arial";
+
+        // Right Aligned
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "right";
+        ctx.fillText(text, 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+
+        // Center
+        ctx.fillStyle = "black";
+        x = 150;
+        y = 100;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "center";
+        ctx.fillText(text, 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+
+        // Left
+        ctx.fillStyle = "black";
+        x = 200;
+        y = 100;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "left";
+        ctx.fillText(text, 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+      }
+
+      function draw3() {
+        clear();
+        var coords = [
+          [30, 139.5],
+          [30, 296.1],
+          [30, 452.70000000000005],
+          [30, 609.3000000000001],
+          [30, 765.9000000000001],
+          [30, 922.5],
+        ];
+        var text = "113° 23′ 27″";
+
+        var font, lineHeight, x, y;
+        ctx.font = "10px serif";
+        ctx.textBaseline = "bottom";
+        ctx.save();
+
+        ctx.translate(coords[0][0], coords[0][1]);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText(text, coords[0][0], coords[0][1]);
+        // ctx.translate(-coords[0][0], -coords[0][1]);
+        // ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.restore();
+
+        ctx.translate(coords[1][0], coords[1][1]);
+        ctx.rotate(-Math.PI / 2);
+
+        // ctx.textAlign = "center";
+        ctx.fillText(text, coords[1][0], coords[1][1]);
+
+        return;
+
+        x = 100;
+        y = 100;
+        font = 20;
+        lineHeight = 15; // this is guess and check as far as I know
+        ctx.font = font + "px Arial";
+
+        // Right Aligned
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "right";
+        ctx.fillText(text, 0, lineHeight / 2);
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+
+        // Center
+        ctx.fillStyle = "black";
+        x = 150;
+        y = 100;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "center";
+        ctx.fillText(text, 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+
+        // Left
+        ctx.fillStyle = "black";
+        x = 200;
+        y = 100;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "left";
+        ctx.fillText(text, 0, lineHeight / 2);
+
+        ctx.restore();
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 2, 2);
+      }
+
+      function clear() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    </script>
+  </body>
+</html>

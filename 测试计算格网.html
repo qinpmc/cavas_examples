@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 99; right: 10px">
+      <button onclick="test1()">绘制矩形1</button>
+      <button onclick="draw2()">绘制矩形2</button>
+      <button onclick="draw3()">绘制矩形3</button>
+      <!-- <button onclick="draw4()">绘制矩形4</button> -->
+    </div>
+    <canvas
+      id="canvas"
+      width="600"
+      height="600"
+      style="border: 1px solid blueviolet"
+    ></canvas>
+    <script type="application/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      //https://stackoverflow.com/questions/3167928/drawing-rotated-text-on-a-html5-canvas
+      function test1(mapDesc, gridsDesc) {
+        let mapDesc = {
+          bbox: [113.8325, 35.45889, 114.7587, 36.03567],
+        };
+        let gridsDesc = {
+          interval: ["auto", "auto"],
+        };
+
+        var bbox = mapDesc.bbox;
+
+        const splitNumber = 5;
+        var deltaX = bbox[2] - bbox[0];
+        var deltaY = bbox[3] - bbox[1];
+        let xyInterval = null;
+        if (
+          typeof gridsDesc.interval[0] === "number" &&
+          typeof gridsDesc.interval[1] === "number"
+        ) {
+          xyInterval = [...gridsDesc.interval];
+        } else {
+          //["auto","auto"]
+          let invervalCoord = null;
+          let defaultSplitNumber = 5;
+          let factor = 0.9;
+          if (deltaX >= deltaY) {
+            invervalCoord = (deltaY * factor) / defaultSplitNumber;
+          } else {
+            invervalCoord = (deltaX * factor) / defaultSplitNumber;
+          }
+          xyInterval = [invervalCoord, invervalCoord];
+        }
+
+        let grids = {
+          x: [],
+          y: [],
+        };
+      }
+
+      function clear() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    </script>
+  </body>
+</html>
